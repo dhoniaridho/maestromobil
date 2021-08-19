@@ -71,7 +71,7 @@ export default function Home() {
                     className="px-3 py-5 text-orange-400 bg-white shadow-lg hover:bg-cyan-500 group hover:text-white"
                     key={i}
                   >
-                    <div className="h-20">{k.icon}</div>
+                    <div className="h-20 text-6xl">{k.icon}</div>
                     <h1 className="text-3xl uppercase text-gray-800 group-hover:text-white">
                       {k.title}
                     </h1>
