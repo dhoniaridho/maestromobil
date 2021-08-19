@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+.h-screen--5rem{
+    height: calc(100vh - 5rem);
+}
+.h-screen--4rem{
+    height: calc(100vh - 4rem);
+}
+}

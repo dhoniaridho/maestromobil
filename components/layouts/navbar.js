@@ -9,10 +9,10 @@ export default function MainNavbar() {
 
     return(
         <header>
-            <nav className="h-20 flex justify-between place-items-center px-5">
+            <nav className="h-16 flex justify-between place-items-center px-5 shadow-sm overflow-hidden">
                 <Link href="/">
                     <a>
-                        <Image draggable={false} className="object-scale-down" alt="brand" width="150px" src={Brand} />
+                        <Image draggable={false} className="object-scale-down" alt="brand" width="150px" height="130px" src={Brand} />
                     </a>
                 </Link>
                 <ul className="flex">
@@ -20,7 +20,7 @@ export default function MainNavbar() {
                         return(
                             <li className="mx-1" key={i}>
                                 <Link href={nav.href}>
-                                    <a className={`${asPath === nav.href && 'text-blue-500'}`}>{nav.name}</a>
+                                    <a className={`${asPath === nav.href && 'text-orange-600 font-semibold tracking-wide'}`}>{nav.name}</a>
                                 </Link>
                             </li>
                         )
