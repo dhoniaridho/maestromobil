@@ -28,7 +28,7 @@ export default function Product() {
   return (
     <MainLayout>
       <section className="flex min-h-screen">
-        <div className="w-1/4 px-7 py-20">
+        <div className="hidden sm:block w-1/4 px-7 py-20">
           <h1 className="font-bold uppercase mb-5">Filter</h1>
           <div>
             <h1 className="font-bold text-sm my-2">Urutkan Dari</h1>
@@ -60,7 +60,7 @@ export default function Product() {
             </button>
           </div>
         </div>
-        <div className="flex-1 grid grid-cols-3 gap-5 px-16 py-10">
+        <div className="flex-1 grid md:grid-cols-3 gap-5 md:px-16 px-5 py-10">
           {isLoading ? (
               <Loading />
           ) : (
@@ -73,9 +73,9 @@ export default function Product() {
                       key={i}
                     >
                       <a role="link">
+                        <div>
                         <img
-                          className="object-cover h-52"
-                          height="200"
+                          className="object-cover w-full h-full md:h-56"
                           src={
                             product._embedded["wp:featuredmedia"][0].source_url
                           }
@@ -86,6 +86,7 @@ export default function Product() {
                             product.title.rendered
                           )}
                         ></h1>
+                        </div>
                       </a>
                     </NextLink>
                   );

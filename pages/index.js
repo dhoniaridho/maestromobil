@@ -32,8 +32,8 @@ export default function Home() {
   return (
     <MainLayout>
       <section id="hero">
-        <div className="flex justify-between px-20 h-screen--4rem place-items-center">
-          <div className="w-1/2 -mt-20">
+        <div className="flex md:justify-between flex-col md:flex-row px-10 md:px-20 md:h-screen--4rem place-items-center py-10">
+          <div className="md:w-1/2 -mt-20 md:order-1 order-2">
             <div>
               <h1 className="text-2xl">Selamat datang di</h1>
               <h1 className="text-6xl font-bold bg-gradient-to-r from-cyan-600 to-blue-700 bg-clip-text text-transparent my-3">
@@ -63,7 +63,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="">
+          <div className="order-1 md:order-2 py-20">
             <Image
               draggable="false"
               className="object-scale-down"
@@ -75,7 +75,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="px-20 py-5">
+      <section className="px-10 md:px-20 py-5">
         <div>
           <h1 className="text-3xl text-center">
             Kenapa harus di{" "}
@@ -83,7 +83,7 @@ export default function Home() {
               Maestro Mobil
             </span>{" "}
           </h1>
-          <div className="grid grid-cols-4 mt-8 gap-5">
+          <div className="grid md:grid-cols-4 mt-8 gap-5">
             {kenapa.map((k, i) => {
               return (
                 <div
@@ -102,16 +102,16 @@ export default function Home() {
             })}
           </div>
         </div>
-        <div className="flex justify-between mt-20">
-          <div className="w-1/3 flex justify-center place-items-center p-5">
-            <h1 className="text-3xl text-center">
+        <div className="flex md:justify-between flex-col md:flex-row mt-20">
+          <div className="md:w-1/3 flex justify-center place-items-center">
+            <h1 className="text-3xl text-center my-5">
               Kenapa kami menggunakan <br />{" "}
               <span className="bg-gradient-to-r from-orange-500 to-yellow-400 font-bold bg-clip-text text-transparent">
                 Bank Syariah
               </span>{" "}
             </h1>
           </div>
-          <div className="grid grid-cols-1 ml-8 gap-8">
+          <div className="grid grid-cols-1 md:ml-8 gap-8">
             {syariah.map((s, i) => {
               return (
                 <div
@@ -130,7 +130,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="py-10 px-20">
+      <section className="py-10 px-5 sm:px-10 md:px-20">
         <div className="p-4 mt-4">
           <h1 className="text-4xl text-center font-semibold mb-6">
             Syarat kredit syariah
@@ -144,7 +144,7 @@ export default function Home() {
                 >
                   <h1 className="text-4xl mx-5">{i + 1}</h1>
                   <div>
-                    <h1 className="text-2xl text-blue-700 font-semibold">
+                    <h1 className="text-xl md:text-2xl text-blue-700 font-semibold">
                       {s.title}
                     </h1>
                     <p className="text-sm font-light mt-2">*{s.description}</p>
@@ -155,9 +155,9 @@ export default function Home() {
           </ul>
         </div>
       </section>
-      <section className="py-10 px-20">
+      <section className="py-10 px-10 md:px-20">
         <h1 className="text-3xl font-semibold">Produk Kami</h1>
-        <div className="flex-1 grid grid-cols-3 gap-5 px-16 py-10">
+        <div className="flex-1 grid md:grid-cols-3 gap-5 py-10">
           {isLoading ? (
             <Loading />
           ) : (
@@ -170,9 +170,9 @@ export default function Home() {
                       key={i}
                     >
                       <a role="link">
+                        <div className="my-4">
                         <img
-                          className="object-cover h-52 w-full mb-2"
-                          height="200"
+                          className="object-cover h-full w-full md:h-56 mb-2"
                           src={
                             product._embedded["wp:featuredmedia"][0].source_url
                           }
@@ -183,6 +183,8 @@ export default function Home() {
                             product.title.rendered
                           )}
                         ></h1>
+                        </div>
+
                       </a>
                     </NextLink>
                   );

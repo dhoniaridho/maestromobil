@@ -4,7 +4,7 @@ import * as Fa from "react-icons/fa";
 export default function Contact() {
   return (
     <MainLayout>
-      <section className="min-h-screen flex flex-col px-20 py-10">
+      <section className="min-h-screen flex flex-col px-5 sm:px-10 md:px-20 py-10">
         <div className="w-full">
           <div className="gmap_canvas">
             <iframe
