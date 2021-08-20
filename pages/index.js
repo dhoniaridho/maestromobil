@@ -6,9 +6,29 @@ import * as Cg from "react-icons/cg";
 import * as Ti from "react-icons/ti";
 import * as Fa from "react-icons/fa";
 import * as Ri from "react-icons/ri";
-import { IconContext } from "react-icons";
+import { useEffect, useState } from "react";
+import NextLink from "next/link";
+import axios from "axios";
 
 export default function Home() {
+  const [Products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const res = await axios.get(
+        `https://www.maestromobiljogja.com/wp-json/wp/v2/posts?_embed&per_page=9`
+      );
+      setIsLoading(false);
+      setProducts(res.data);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <MainLayout>
       <section id="hero">
@@ -64,24 +84,22 @@ export default function Home() {
             </span>{" "}
           </h1>
           <div className="grid grid-cols-4 mt-8 gap-5">
-            <IconContext.Provider value={{ className: "text-6xl" }}>
-              {kenapa.map((k, i) => {
-                return (
-                  <div
-                    className="px-3 py-5 text-orange-400 bg-white shadow-lg hover:bg-cyan-500 group hover:text-white"
-                    key={i}
-                  >
-                    <div className="h-20 text-6xl">{k.icon}</div>
-                    <h1 className="text-3xl uppercase text-gray-800 group-hover:text-white">
-                      {k.title}
-                    </h1>
-                    <p className="mt-3 text-sm font-light text-gray-500 group-hover:text-white">
-                      {k.descripton}
-                    </p>
-                  </div>
-                );
-              })}
-            </IconContext.Provider>
+            {kenapa.map((k, i) => {
+              return (
+                <div
+                  className="px-3 py-5 text-orange-400 bg-white shadow-lg hover:bg-cyan-500 group hover:text-white"
+                  key={i}
+                >
+                  <div className="h-20 text-6xl">{k.icon}</div>
+                  <h1 className="text-3xl uppercase text-gray-800 group-hover:text-white">
+                    {k.title}
+                  </h1>
+                  <p className="mt-3 text-sm font-light text-gray-500 group-hover:text-white">
+                    {k.descripton}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="flex justify-between mt-20">
@@ -93,24 +111,22 @@ export default function Home() {
               </span>{" "}
             </h1>
           </div>
-          <div className="flex-1 grid grid-cols-1 ml-8 gap-8">
-            <IconContext.Provider value={{ className: "text-6xl" }}>
-              {syariah.map((s, i) => {
-                return (
-                  <div
-                    className="p-3 text-orange-400 bg-white shadow-lg hover:bg-orange-600 group hover:text-white"
-                    key={i}
-                  >
-                    <h1 className="absolute text-5xl -mt-10 font-semibold text-gray-700">
-                      {i + 1}
-                    </h1>
-                    <p className="mt-3 text-sm text-gray-500 group-hover:text-white">
-                      {s.content}
-                    </p>
-                  </div>
-                );
-              })}
-            </IconContext.Provider>
+          <div className="grid grid-cols-1 ml-8 gap-8">
+            {syariah.map((s, i) => {
+              return (
+                <div
+                  className="p-3 text-orange-400 bg-white shadow-lg hover:bg-orange-600 group hover:text-white"
+                  key={i}
+                >
+                  <h1 className="absolute text-5xl -mt-10 font-semibold text-gray-700">
+                    {i + 1}
+                  </h1>
+                  <p className="mt-3 text-sm text-gray-500 group-hover:text-white">
+                    {s.content}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -119,19 +135,70 @@ export default function Home() {
           <h1 className="text-4xl text-center font-semibold mb-6">
             Syarat kredit syariah
           </h1>
-            <ul className="grid gap-4">
-              {syarat.map((s, i)=>{
-                return(
-                  <li className="bg-white shadow-md p-2 flex place-items-center hover:shadow-lg transform transition-transform" key={i}>
-                      <h1 className="text-4xl mx-5">{i+1}</h1>
-                      <div>
-                      <h1 className="text-2xl text-blue-700 font-semibold">{s.title}</h1>
-                      <p className="text-sm font-light mt-2">*{s.description}</p>
-                      </div>
-                  </li>
-                )
-              })}
-            </ul>
+          <ul className="grid gap-4">
+            {syarat.map((s, i) => {
+              return (
+                <li
+                  className="bg-white shadow-md p-2 flex place-items-center hover:shadow-lg transform transition-transform"
+                  key={i}
+                >
+                  <h1 className="text-4xl mx-5">{i + 1}</h1>
+                  <div>
+                    <h1 className="text-2xl text-blue-700 font-semibold">
+                      {s.title}
+                    </h1>
+                    <p className="text-sm font-light mt-2">*{s.description}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+      <section className="py-10 px-20">
+        <h1 className="text-3xl font-semibold">Produk Kami</h1>
+        <div className="flex-1 grid grid-cols-3 gap-5 px-16 py-10">
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {Products &&
+                Products.map((product, i) => {
+                  return (
+                    <NextLink
+                      href={`product/${product.slug}?id=${product.id}`}
+                      key={i}
+                    >
+                      <a role="link">
+                        <img
+                          className="object-cover h-52 w-full mb-2"
+                          height="200"
+                          src={
+                            product._embedded["wp:featuredmedia"][0].source_url
+                          }
+                          alt="car"
+                        />
+                        <h1
+                          dangerouslySetInnerHTML={createMarkup(
+                            product.title.rendered
+                          )}
+                        ></h1>
+                      </a>
+                    </NextLink>
+                  );
+                })}
+            </>
+          )}
+        </div>
+        <div className="flex justify-center">
+        <Link
+          className="bg-gradient-to-r from-orange-500 to-yellow-500"
+          type="secondary"
+          size="md"
+          href="/product"
+        >
+          Lihat Selengkapnya
+        </Link>
         </div>
       </section>
     </MainLayout>
@@ -179,15 +246,98 @@ const syariah = [
 
 const syarat = [
   {
-    title: 'Tanda keseriusan Rp.2,5jt',
-    description: 'kalau di ACC oleh bank maka bisa diminta lagi setelah akad dengan bank / bisa juga menjadi pengurang nominal uang mukanya'
+    title: "Tanda keseriusan Rp.2,5jt",
+    description:
+      "kalau di ACC oleh bank maka bisa diminta lagi setelah akad dengan bank / bisa juga menjadi pengurang nominal uang mukanya",
   },
   {
-    title: 'Fotocopy KTP suami + istri',
-    description: 'bagi yg sudah menikah'
+    title: "Fotocopy KTP suami + istri",
+    description: "bagi yg sudah menikah",
   },
   {
-    title: 'No WA atau HP',
-    description: 'wajib'
+    title: "No WA atau HP",
+    description: "wajib",
   },
-]
+];
+
+const Loading = () => {
+  return (
+    <>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+      <div className="bg-gray-100 animate-pulse w-full p-5">
+        <div className="w-full pl-10 bg-gray-200 animate-pulse h-36"></div>
+        <div className="pr-10">
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+          <div className="bg-gray-200 animate-pulse h-5 my-1"></div>
+        </div>
+      </div>
+    </>
+  );
+};
+function createMarkup(props) {
+  return { __html: props };
+}
