@@ -102,7 +102,7 @@ export default function Home() {
             })}
           </div>
         </div>
-        <div className="flex md:justify-between flex-col md:flex-row mt-20">
+        <div className="flex md:justify-between flex-col md:flex-row md:mt-20 py-10">
           <div className="md:w-1/3 flex justify-center place-items-center">
             <h1 className="text-3xl text-center my-5">
               Kenapa kami menggunakan <br />{" "}
@@ -131,8 +131,8 @@ export default function Home() {
         </div>
       </section>
       <section className="py-10 px-5 sm:px-10 md:px-20">
-        <div className="p-4 mt-4">
-          <h1 className="text-4xl text-center font-semibold mb-6">
+        <div className="p-4 mt-5">
+          <h1 className="text-4xl text-center font-semibold mb-10">
             Syarat kredit syariah
           </h1>
           <ul className="grid gap-4">
