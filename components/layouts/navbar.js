@@ -37,15 +37,15 @@ const navs = [
         href: '/'
     },
     {
-        name: 'Product',
+        name: 'Produk',
         href: '/product'
     },
     {
-        name: 'Contact',
+        name: 'Hubungi Kami',
         href: '/contact'
     },
     {
-        name: 'About Me',
+        name: 'Tentang Kami',
         href: '/about'
     },
 ]
