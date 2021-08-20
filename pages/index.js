@@ -63,7 +63,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="order-1 md:order-2 py-20">
+          <div className="order-1 md:order-2 sm:pb-0 pb-20">
             <Image
               draggable="false"
               className="object-scale-down"
