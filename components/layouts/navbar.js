@@ -56,7 +56,7 @@ export default function MainNavbar() {
                 <ul className="flex-1 flex place-items-center flex-col text-center place-content-center text-2xl mx-auto">
                     {navs.map((nav, i) => {
                         return (
-                            <li className="mx-1" key={i}>
+                            <li onClick={handleClose} className="mx-1" key={i}>
                                 <Link href={nav.href}>
                                     <a className={`${asPath === nav.href && 'text-orange-600 font-semibold tracking-wide'}`}>{nav.name}</a>
                                 </Link>
