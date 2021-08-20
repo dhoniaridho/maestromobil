@@ -32,7 +32,7 @@ export default function Product() {
           <h1 className="font-bold uppercase mb-5">Filter</h1>
           <div>
             <h1 className="font-bold text-sm my-2">Urutkan Dari</h1>
-            <ul className="text-xs mb-5">
+            <ul className="text-sm mb-5">
               <li
                 role="button"
                 className={`${
