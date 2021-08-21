@@ -21,7 +21,7 @@ export default function MainNavbar() {
 
     return (
         <header>
-            <nav className="h-16 flex justify-between place-items-center px-5 shadow-sm overflow-hidden">
+            <nav className="h-16 flex justify-between place-items-center px-2 sm:px-5 shadow-sm overflow-hidden">
                 <Link href="/">
                     <a>
                         <Image draggable={false} className="object-scale-down" alt="brand" width="150px" height="130px" src={Brand} />

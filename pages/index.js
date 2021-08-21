@@ -35,13 +35,13 @@ export default function Home() {
         <div className="flex md:justify-between flex-col md:flex-row px-10 md:px-20 md:h-screen--4rem place-items-center py-10">
           <div className="md:w-1/2 -mt-20 md:order-1 order-2">
             <div>
-              <h1 className="text-2xl">Selamat datang di</h1>
-              <h1 className="text-6xl font-bold bg-gradient-to-r from-cyan-600 to-blue-700 bg-clip-text text-transparent my-3">
+              <h1 className="text-xl md:text-2xl lg:text-3xl">Selamat datang di</h1>
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold bg-gradient-to-r from-cyan-600 to-blue-700 bg-clip-text text-transparent my-3">
                 Maestro Mobil
               </h1>
             </div>
             <div className="mt-3">
-              <h1 className="text-3xl font-semibold text-orange-600">
+              <h1 className="text lg md:text-2xl lg:text-3xl font-semibold text-orange-600">
                 Temukan mobil impianmu disini
               </h1>
               <p className="w-3/4 mt-2 text-sm">
@@ -53,12 +53,12 @@ export default function Home() {
               <Link
                 className="bg-gradient-to-r from-orange-500 to-yellow-500"
                 type="secondary"
-                size="md"
+                size="sm"
                 href="/product"
               >
                 Lihat Produk
               </Link>
-              <Link type="transparent" size="md" href="/contact">
+              <Link type="transparent" size="sm" href="/contact">
                 Hubungi Kami
               </Link>
             </div>
@@ -75,7 +75,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="px-10 md:px-20 py-5">
+      <section className="px-5 sm:px-10 md:px-20 py-5">
         <div>
           <h1 className="text-3xl text-center">
             Kenapa harus di{" "}
@@ -87,7 +87,7 @@ export default function Home() {
             {kenapa.map((k, i) => {
               return (
                 <div
-                  className="px-3 py-5 text-orange-400 bg-white shadow-lg hover:bg-cyan-500 group hover:text-white"
+                  className="px-2 md:px-3 py-3 md:py-5 text-orange-400 bg-white shadow-lg hover:bg-cyan-500 group hover:text-white"
                   key={i}
                 >
                   <div className="h-20 text-6xl">{k.icon}</div>
@@ -104,14 +104,14 @@ export default function Home() {
         </div>
         <div className="flex md:justify-between flex-col md:flex-row md:mt-20 py-10">
           <div className="md:w-1/3 flex justify-center place-items-center">
-            <h1 className="text-3xl text-center my-5">
+            <h1 className="text-3xl text-center my-10">
               Kenapa kami menggunakan <br />{" "}
               <span className="bg-gradient-to-r from-orange-500 to-yellow-400 font-bold bg-clip-text text-transparent">
                 Bank Syariah
               </span>{" "}
             </h1>
           </div>
-          <div className="grid grid-cols-1 md:ml-8 gap-8">
+          <div className="grid grid-cols-1 md:ml-8 gap-14">
             {syariah.map((s, i) => {
               return (
                 <div
@@ -135,16 +135,16 @@ export default function Home() {
           <h1 className="text-4xl text-center font-semibold mb-10">
             Syarat kredit syariah
           </h1>
-          <ul className="grid gap-4">
+          <ul className="grid gap-6">
             {syarat.map((s, i) => {
               return (
                 <li
-                  className="bg-white shadow-md p-2 flex place-items-center hover:shadow-lg transform transition-transform"
+                  className="bg-white shadow-md p-2 sm:flex place-items-center hover:shadow-lg transform transition-transform"
                   key={i}
                 >
-                  <h1 className="text-4xl mx-5">{i + 1}</h1>
+                  <h1 className="text-xl md:text-4xl mx-5">{i + 1}</h1>
                   <div>
-                    <h1 className="text-xl md:text-2xl text-blue-700 font-semibold">
+                    <h1 className="text-xl md:ext-xl md:text-2xl text-blue-700 font-semibold">
                       {s.title}
                     </h1>
                     <p className="text-sm font-light mt-2">*{s.description}</p>
@@ -155,7 +155,7 @@ export default function Home() {
           </ul>
         </div>
       </section>
-      <section className="py-10 px-10 md:px-20">
+      <section className="py-10 px-5 sm:px-10 md:px-20">
         <h1 className="text-3xl font-semibold">Produk Kami</h1>
         <div className="flex-1 grid md:grid-cols-3 gap-5 py-10">
           {isLoading ? (
